@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!--
+  ~ Copyright (c) Salvatore Penitente 2017.
+  -->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!-- INSERT CLASS MAPPING HERE -->
+    <class name="Measurement" table="measurements">
+        <id name="measurementID" type="int" column="idmeasurements">
+            <generator class="native"/>
+        </id>
+
+        <property name="measurementDate" column="measurementDate" type="datetime"/>
+        <property name="drillID" column="iddrill" type="int"/>
+        <property name="pollutantID" column="idpollutant" type="int"/>
+        <property name="quantityMeasured" column="quantity" type="double"/>
+    </class>
+</hibernate-mapping>

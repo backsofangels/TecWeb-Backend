@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!--
+  ~ Copyright (c) Salvatore Penitente 2017.
+  -->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!-- INSERT CLASS MAPPING HERE -->
+    <class name="Pollutant" table="pollutants">
+        <id name="pollutantID" type="int" column="idpollutants">
+            <generator class="native"/>
+        </id>
+
+        <property name="pollutantName" column="name" type="string"/>
+        <property name="maximumThreshold" column="maximum" type="double"/>
+    </class>
+</hibernate-mapping>
