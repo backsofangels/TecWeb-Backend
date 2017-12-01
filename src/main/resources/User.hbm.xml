@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!--
+  ~ Copyright (c) Salvatore Penitente 2017.
+  -->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!-- INSERT CLASS MAPPING HERE -->
+    <class name="User" table="users">
+        <id name="userID" type="int" column="idusers">
+            <generator class="native"/>
+        </id>
+        
+        <property name="firstName" column="firstName" type="string"/>
+        <property name="lastName" column ="lastName" type="string"/>
+        <property name="email" column="email" type="string"/>
+        <property name="hashedPwd" column="hashedPwd" type="string"/>
+        <property name="adminGrants" column="adminGrants" type="boolean"/>
+        <property name="favoriteLocation.xCoordinate" column="favLocationX" type="double"/>
+        <property name="favoriteLocation.yCoordinate" column="favLocationY" type="double"/>
+    </class>
+</hibernate-mapping>
