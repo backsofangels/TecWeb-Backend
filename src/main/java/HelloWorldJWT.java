@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) Salvatore Penitente 2017.
+ */
+
+package main.java;
+
 import static spark.Spark.*;
 import com.auth0.jwt.*;
 import com.auth0.jwt.algorithms.Algorithm;
