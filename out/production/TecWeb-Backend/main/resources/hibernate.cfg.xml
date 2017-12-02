@@ -34,5 +34,11 @@
         <property name="show_sql">
             true
         </property>
+
+        <mapping resource="main/resources/Drill.hbm.xml"/>
+        <mapping resource="main/resources/Measurement.hbm.xml"/>
+        <mapping resource="main/resources/Pollutant.hbm.xml" />
+        <mapping resource="main/resources/User.hbm.xml" />
+
     </session-factory>
 </hibernate-configuration>

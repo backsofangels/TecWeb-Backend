@@ -10,7 +10,7 @@
 <hibernate-mapping>
     <!-- INSERT CLASS MAPPING HERE -->
 
-    <class name="Drill" table="drill">
+    <class name="main.java.model.Drill" table="drills">
         <id name="drillID" type="int" column="iddrills">
             <generator class="native"/>
         </id>

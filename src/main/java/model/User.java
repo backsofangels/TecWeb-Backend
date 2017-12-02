@@ -13,19 +13,21 @@ public class User {
     private String email;
     private String hashedPwd;
     private boolean adminGrants;
-    private Coordinates favoriteLocation;
+    private double favLocationX;
+    private double favLocationY;
 
     public User() {}
 
     public User(int userID, String firstName, String lastName, String email,
-                String hashedPwd, boolean adminGrants, Coordinates favoriteLocation) {
+                String hashedPwd, boolean adminGrants, double favLocationX, double favLocationY) {
         this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.hashedPwd = hashedPwd;
         this.adminGrants = adminGrants;
-        this.favoriteLocation = favoriteLocation;
+        this.favLocationX = favLocationX;
+        this.favLocationY = favLocationY;
     }
 
     public int getUserID() {
@@ -76,12 +78,20 @@ public class User {
         this.adminGrants = adminGrants;
     }
 
-    public Coordinates getFavoriteLocation() {
-        return favoriteLocation;
+    public double getFavLocationX() {
+        return this.favLocationX;
     }
 
-    public void setFavoriteLocation(Coordinates favoriteLocation) {
-        this.favoriteLocation = favoriteLocation;
+    public void setFavLocationX(double favLocationX) {
+        this.favLocationX = favLocationX;
+    }
+
+    public double getFavLocationY() {
+        return this.favLocationY;
+    }
+
+    public void setFavLocationY(double favLocationY) {
+        this.favLocationY = favLocationY;
     }
 
 }

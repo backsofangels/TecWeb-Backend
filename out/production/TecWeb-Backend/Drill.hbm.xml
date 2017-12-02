@@ -9,12 +9,13 @@
 
 <hibernate-mapping>
     <!-- INSERT CLASS MAPPING HERE -->
-    <class name="Pollutant" table="pollutants">
-        <id name="pollutantID" type="int" column="idpollutants">
+
+    <class name="main.java.model.Drill" table="drills">
+        <id name="drillID" type="int" column="iddrills">
             <generator class="native"/>
         </id>
 
-        <property name="pollutantName" column="name" type="string"/>
-        <property name="maximumThreshold" column="maximum" type="double"/>
+        <property name="xCoordinate" column="xCoordinate" type="double"/>
+        <property name="yCoordinate" column="yCoordinate" type="double"/>
     </class>
 </hibernate-mapping>

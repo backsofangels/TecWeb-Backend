@@ -16,11 +16,11 @@ public class Drill {
         this.yCoordinate = yCoordinate;
     }
 
-    public void setDrillID(int drillID) {
+    public void setdrillID(int drillID) {
         this.drillID = drillID;
     }
 
-    public int getDrillID() {
+    public int getdrillID() {
         return this.drillID;
     }
 

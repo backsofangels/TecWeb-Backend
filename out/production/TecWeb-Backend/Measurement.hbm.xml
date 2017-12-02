@@ -9,12 +9,12 @@
 
 <hibernate-mapping>
     <!-- INSERT CLASS MAPPING HERE -->
-    <class name="Measurement" table="measurements">
+    <class name="main.java.model.Measurement" table="measurements">
         <id name="measurementID" type="int" column="idmeasurements">
             <generator class="native"/>
         </id>
 
-        <property name="measurementDate" column="measurementDate" type="datetime"/>
+        <property name="measurementDate" column="measurementDate" type="date"/>
         <property name="drillID" column="iddrill" type="int"/>
         <property name="pollutantID" column="idpollutant" type="int"/>
         <property name="quantityMeasured" column="quantity" type="double"/>

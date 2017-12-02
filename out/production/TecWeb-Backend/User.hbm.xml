@@ -9,7 +9,7 @@
 
 <hibernate-mapping>
     <!-- INSERT CLASS MAPPING HERE -->
-    <class name="User" table="users">
+    <class name="main.java.model.User" table="users">
         <id name="userID" type="int" column="idusers">
             <generator class="native"/>
         </id>
@@ -19,7 +19,7 @@
         <property name="email" column="email" type="string"/>
         <property name="hashedPwd" column="hashedPwd" type="string"/>
         <property name="adminGrants" column="adminGrants" type="boolean"/>
-        <property name="favoriteLocation.xCoordinate" column="favLocationX" type="double"/>
-        <property name="favoriteLocation.yCoordinate" column="favLocationY" type="double"/>
+        <property name="favLocationX" column="favLocationX" type="double"/>
+        <property name="favLocationY" column="favLocationY" type="double"/>
     </class>
 </hibernate-mapping>
