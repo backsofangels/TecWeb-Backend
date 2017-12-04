@@ -13,11 +13,20 @@ import java.util.List;
 
 public class MeasurementDAO {
     private SessionFactory measurementSessionFactory;
+    private static MeasurementDAO instance = new MeasurementDAO();
 
-    public MeasurementDAO(SessionFactory factory) {
-        if (measurementSessionFactory == null) {
-            this.measurementSessionFactory = factory;
-        }
+    private MeasurementDAO() {}
+
+    public MeasurementDAO getMeasurementDAOSharedInstance() {
+        return instance;
+    }
+
+    public void setMeasurementSessionFactory(SessionFactory factory) {
+        this.measurementSessionFactory = factory;
+    }
+
+    public SessionFactory getMeasurementSessionFactory() {
+        return measurementSessionFactory;
     }
 
     public List<Measurement> getAllMeasurements() {

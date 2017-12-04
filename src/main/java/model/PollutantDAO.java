@@ -13,11 +13,20 @@ import java.util.List;
 
 public class PollutantDAO {
     private SessionFactory pollutantSessionFactory;
+    private static PollutantDAO instance = new PollutantDAO();
 
-    public PollutantDAO(SessionFactory factory) {
-        if (pollutantSessionFactory == null) {
-            this.pollutantSessionFactory = factory;
-        }
+    private PollutantDAO () {}
+
+    public static PollutantDAO getPollutantDAOInstance() {
+        return instance;
+    }
+
+    public void setPollutantSessionFactory(SessionFactory factory) {
+        this.pollutantSessionFactory = factory;
+    }
+
+    public SessionFactory getPollutantSessionFactory() {
+        return pollutantSessionFactory;
     }
 
     public List<Pollutant> getAllPollutants() {
