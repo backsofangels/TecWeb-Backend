@@ -7,16 +7,26 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
     private SessionFactory userSessionFactory;
+    private static UserDAO instance = new UserDAO();
 
-    public UserDAO (SessionFactory factory) {
-        if (this.userSessionFactory == null) {
-            this.userSessionFactory = factory;
-        }
+    private UserDAO() {}
+
+    public static UserDAO getUserDAOInstance() {
+        return instance;
+    }
+
+    public void setUserSessionFactory(SessionFactory userSessionFactory) {
+        this.userSessionFactory = userSessionFactory;
+    }
+
+    public SessionFactory getUserSessionFactory() {
+        return userSessionFactory;
     }
 
     public List<User> retrieveAllUsers() {
