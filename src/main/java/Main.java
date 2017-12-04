@@ -4,8 +4,6 @@
 
 package main.java;
 
-import main.java.model.DrillDAO;
-import main.java.model.PollutantDAO;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -22,6 +20,5 @@ public class Main {
             e.printStackTrace();
             throw new ExceptionInInitializerError();
         }
-
     }
 }

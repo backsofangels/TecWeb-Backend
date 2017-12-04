@@ -3,10 +3,7 @@
  */
 
 package main.java.model;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +20,19 @@ public class DrillDAO {
     public List<Drill> getAllDrills() {
         Session retrieveSession = this.drillSessionFactory.openSession();
         Transaction retrieveTransaction = null;
-        List<Drill> drillsQueryResult = new ArrayList<Drill>();
+        List drillsQueryResult = new ArrayList<Drill>();
 
         try {
             retrieveTransaction = retrieveSession.beginTransaction();
             drillsQueryResult = retrieveSession.createQuery("FROM Drill").list();
+
+            retrieveTransaction.commit();
         } catch (HibernateException getAllDrillsRetrieveException) {
             if (retrieveTransaction != null) {
-                System.out.println("getAllDrills reading error");
-                getAllDrillsRetrieveException.printStackTrace();
+                retrieveTransaction.rollback();
             }
+            System.out.println("getAllDrills reading error");
+            getAllDrillsRetrieveException.printStackTrace();
         } finally {
             retrieveSession.close();
         }
@@ -50,6 +50,9 @@ public class DrillDAO {
             drillID = (Integer) writingSession.save(drillToStore);
             writeTransaction.commit();
         } catch (HibernateException createDrillWritingException) {
+            if (writeTransaction != null) {
+                writeTransaction.rollback();
+            }
             System.out.println("createDrill writing error");
             createDrillWritingException.printStackTrace();
         } finally {
@@ -58,5 +61,45 @@ public class DrillDAO {
         return drillID;
     }
 
-    //TODO: implement the update and delete
+    public void updateDrill (Integer drillID, Drill updatedDrill) {
+        Session updateSession = drillSessionFactory.openSession();
+        Transaction updateTransaction = null;
+
+        try {
+            updateTransaction = updateSession.beginTransaction();
+            Drill drillToUpdate = (Drill) updateSession.get(Drill.class, drillID);
+            drillToUpdate.setxCoordinate(updatedDrill.getxCoordinate());
+            drillToUpdate.setyCoordinate(updatedDrill.getyCoordinate());
+            updateSession.update(drillToUpdate);
+            updateTransaction.commit();
+        } catch (HibernateException updateDrillUpdateException) {
+            if (updateTransaction != null) {
+                updateTransaction.rollback();
+            }
+            System.out.println("updateDrill update error");
+            updateDrillUpdateException.printStackTrace();
+        } finally {
+            updateSession.close();
+        }
+    }
+
+    public void deleteDrill (Integer drillID) {
+        Session deleteSession = drillSessionFactory.openSession();
+        Transaction deleteTransaction = null;
+
+        try {
+            deleteTransaction = deleteSession.beginTransaction();
+            Drill drillToDelete = (Drill) deleteSession.get(Drill.class, drillID);
+            deleteSession.delete(drillToDelete);
+            deleteTransaction.commit();
+        } catch (HibernateException deleteDrillDeleteException) {
+            if (deleteTransaction != null) {
+                deleteTransaction.rollback();
+            }
+            System.out.println("deleteDrill delete error");
+            deleteDrillDeleteException.printStackTrace();
+        } finally {
+            deleteSession.close();
+        }
+    }
 }

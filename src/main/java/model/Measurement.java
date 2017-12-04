@@ -4,6 +4,7 @@
 
 package main.java.model;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.Date;
 
 public class Measurement {
@@ -11,11 +12,11 @@ public class Measurement {
     private Date measurementDate;
     private int drillID;
     private int pollutantID;
-    private int quantityMeasured; //THE QUANTITY IS ALWAYS EXPRESSED AS DOBULE AND INTERPRETED AS MG/CUBE METER
+    private double quantityMeasured; //THE QUANTITY IS ALWAYS EXPRESSED AS DOBULE AND INTERPRETED AS MG/CUBE METER
 
     public Measurement() {}
 
-    public Measurement(Date measurementDate, int drillID, int pollutantID, int quantityMeasured) {
+    public Measurement(Date measurementDate, int drillID, int pollutantID, double quantityMeasured) {
         this.measurementDate = measurementDate;
         this.drillID = drillID;
         this.pollutantID = pollutantID;
@@ -53,11 +54,19 @@ public class Measurement {
         this.pollutantID = pollutantID;
     }
 
-    public int getQuantityMeasured() {
+    public double getQuantityMeasured() {
         return quantityMeasured;
     }
 
-    public void setQuantityMeasured(int quantityMeasured) {
+    public void setQuantityMeasured(double quantityMeasured) {
         this.quantityMeasured = quantityMeasured;
+    }
+
+    public void printMeasurement() {
+        System.out.println("meas id " + this.measurementID);
+        System.out.println("meas date" + this.measurementDate);
+        System.out.println("meas drill " + this.drillID);
+        System.out.println("poll id" + this.pollutantID);
+        System.out.println("quantity " + this.quantityMeasured);
     }
 }

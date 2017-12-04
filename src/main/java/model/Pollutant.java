@@ -39,4 +39,10 @@ public class Pollutant {
     public double getMaximumThreshold() {
         return this.maximumThreshold;
     }
+
+    public void printPollutant() {
+        System.out.println("PollutantID: " + this.pollutantID);
+        System.out.println("Pollutant name: " + this.pollutantName);
+        System.out.println("Pollutant threshold: " + this.maximumThreshold);
+    }
 }

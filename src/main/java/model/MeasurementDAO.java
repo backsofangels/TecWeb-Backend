@@ -28,11 +28,13 @@ public class MeasurementDAO {
         try {
             retrieveTransaction = retrieveSession.beginTransaction();
             measurementQueryResults = retrieveSession.createQuery("FROM Measurement").list();
+            retrieveTransaction.commit();
         } catch (HibernateException getAllMeasurementRetrieveException) {
             if (retrieveTransaction != null) {
-                System.out.println("getAllMeasurement retrieve error");
-                getAllMeasurementRetrieveException.printStackTrace();
+                retrieveTransaction.rollback();
             }
+            System.out.println("getAllMeasurement retrieve error");
+            getAllMeasurementRetrieveException.printStackTrace();
         } finally {
             retrieveSession.close();
         }
@@ -51,11 +53,58 @@ public class MeasurementDAO {
             measurementID = (Integer) writingSession.save(measurementToStore);
             writeTransaction.commit();
         } catch (HibernateException createMeasurementWritingException) {
+            if (writeTransaction != null) {
+                writeTransaction.rollback();
+            }
             System.out.println("createMeasurement writing error");
             createMeasurementWritingException.printStackTrace();
         } finally {
             writingSession.close();
         }
         return measurementID;
+    }
+
+    public void updateMeasurement (Integer measurementID, Measurement updatedMeasurement) {
+        Session updateSession = measurementSessionFactory.openSession();
+        Transaction updateTransaction = null;
+
+        try {
+            updateTransaction = updateSession.beginTransaction();
+            Measurement measurementToUpdate = (Measurement) updateSession.get(Measurement.class, measurementID);
+            measurementToUpdate.setDrillID(updatedMeasurement.getDrillID());
+            measurementToUpdate.setMeasurementDate(updatedMeasurement.getMeasurementDate());
+            measurementToUpdate.setPollutantID(updatedMeasurement.getPollutantID());
+            measurementToUpdate.setQuantityMeasured(updatedMeasurement.getQuantityMeasured());
+            updateSession.update(measurementToUpdate);
+            updateTransaction.commit();
+        } catch (HibernateException updateMeasurementUpdateException) {
+            if (updateTransaction != null) {
+                updateTransaction.rollback();
+            }
+            System.out.println("updateMeasurement update error");
+            updateMeasurementUpdateException.printStackTrace();
+        } finally {
+            updateSession.close();
+        }
+    }
+
+    public void deleteMeasurement (Integer measurementID) {
+        Session deleteSession = measurementSessionFactory.openSession();
+        Transaction deleteTransaction = null;
+
+        try {
+            deleteTransaction = deleteSession.beginTransaction();
+            Measurement measurementToDelete = (Measurement) deleteSession.get(Measurement.class, measurementID);
+            deleteSession.delete(measurementToDelete);
+            deleteTransaction.commit();
+        } catch (HibernateException deleteMeasurementDeleteException) {
+            if (deleteTransaction != null) {
+                deleteTransaction.rollback();
+            }
+            System.out.println("deleteMeasurement delete error");
+            deleteMeasurementDeleteException.printStackTrace();
+        } finally {
+            deleteSession.close();
+        }
     }
 }
