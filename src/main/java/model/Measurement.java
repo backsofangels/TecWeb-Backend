@@ -15,8 +15,7 @@ public class Measurement {
 
     public Measurement() {}
 
-    public Measurement(int measurementID, Date measurementDate, int drillID, int pollutantID, int quantityMeasured) {
-        this.measurementID = measurementID;
+    public Measurement(Date measurementDate, int drillID, int pollutantID, int quantityMeasured) {
         this.measurementDate = measurementDate;
         this.drillID = drillID;
         this.pollutantID = pollutantID;
