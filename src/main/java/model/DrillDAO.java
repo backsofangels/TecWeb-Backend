@@ -10,11 +10,20 @@ import java.util.List;
 
 public class DrillDAO {
     private SessionFactory drillSessionFactory;
+    private static DrillDAO instance = new DrillDAO();
 
-    public DrillDAO(SessionFactory factory) {
-        if (drillSessionFactory == null) {
-            this.drillSessionFactory = factory;
-        }
+    private DrillDAO() {}
+
+    public DrillDAO getDrillDAOInstance() {
+        return instance;
+    }
+
+    public void setDrillSessionFactory(SessionFactory drillSessionFactory) {
+        this.drillSessionFactory = drillSessionFactory;
+    }
+
+    public SessionFactory getDrillSessionFactory() {
+        return drillSessionFactory;
     }
 
     public List<Drill> getAllDrills() {
