@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) Salvatore Penitente 2017.
+ */
+
+package main.java;
+
 import static spark.Spark.*;
 import com.auth0.jwt.*;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -11,8 +17,7 @@ import java.util.Base64;
 
 
 public class HelloWorldJWT {
-    public static void main(String[] args) {
-
+    public static void fuffa(String[] args) {
         port(8080);
 
         post("auth/jwt", (req, res) -> {
