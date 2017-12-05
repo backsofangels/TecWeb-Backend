@@ -7,6 +7,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +19,7 @@ public class MeasurementDAO {
 
     private MeasurementDAO() {}
 
-    public MeasurementDAO getMeasurementDAOSharedInstance() {
+    public static MeasurementDAO getMeasurementDAOSharedInstance() {
         return instance;
     }
 
@@ -49,6 +51,30 @@ public class MeasurementDAO {
         }
 
         return measurementQueryResults;
+    }
+
+    public List<Measurement> getLatestMeasurementsByDrill(int drillIdentifier, int pollutantNumber) {
+        Session retrieveSession = this.measurementSessionFactory.openSession();
+        Transaction retrieveTransaction = null;
+        List<Measurement> measurementResults = new ArrayList<Measurement>();
+
+        try {
+            retrieveTransaction = retrieveSession.beginTransaction();
+            measurementResults = retrieveSession.createQuery("FROM Measurement where drillID=:drillIdentifier")
+                    .setParameter("drillIdentifier", drillIdentifier)
+                    .setMaxResults(pollutantNumber)
+                    .list();
+            retrieveTransaction.commit();
+        } catch (HibernateException getLatestMeasurementsByDrillException) {
+            if (retrieveTransaction != null) {
+                retrieveTransaction.rollback();
+            }
+            System.out.println("getLatestMeasurementsByDrill error");
+            getLatestMeasurementsByDrillException.printStackTrace();
+        } finally {
+            retrieveSession.close();
+        }
+        return measurementResults;
     }
 
     public Integer createMeasurement(Date measurementDate, int drillID, int pollutantID, int quantityMeasured) {
