@@ -51,6 +51,70 @@ public class UserDAO {
         return userQueryResult;
     }
 
+    public User retrieveUserInfos(int userIdentifier) {
+        Session retrieveSession = this.userSessionFactory.openSession();
+        Transaction retrieveTransaction = null;
+        User queryResult = null;
+
+        try {
+            retrieveTransaction = retrieveSession.beginTransaction();
+            queryResult = retrieveSession.get(User.class, userIdentifier);
+            retrieveTransaction.commit();
+        } catch (HibernateException retrieveUserException) {
+            if (retrieveTransaction != null) {
+                retrieveTransaction.rollback();
+            }
+            System.out.println("retrieveUser error");
+            retrieveUserException.printStackTrace();
+        } finally {
+            retrieveSession.close();
+        }
+        return queryResult;
+    }
+
+    public User retrieveUserInfosByEmail(String email) {
+        Session retrieveSession = this.userSessionFactory.openSession();
+        Transaction retrieveTransaction = null;
+        User queryResult = null;
+
+        try {
+            retrieveTransaction = retrieveSession.beginTransaction();
+            queryResult = retrieveSession.get(User.class, email);
+            retrieveTransaction.commit();
+        } catch (HibernateException retrieveUserException) {
+            if (retrieveTransaction != null) {
+                retrieveTransaction.rollback();
+            }
+            System.out.println("retrieveUserByEmail error");
+            retrieveUserException.printStackTrace();
+        } finally {
+            retrieveSession.close();
+        }
+        return queryResult;
+    }
+
+    public void updatePassword(String hashedPwd, int userID) {
+        Session updateSession = userSessionFactory.openSession();
+        Transaction updateTransaction = null;
+
+        try {
+            updateTransaction = updateSession.beginTransaction();
+            User userToUpdate = (User) updateSession.get(User.class, userID);
+            userToUpdate.setHashedPwd(hashedPwd);
+            updateSession.update(userToUpdate);
+            updateTransaction.commit();
+        } catch (HibernateException updateUserUpdateException) {
+            if (updateTransaction != null) {
+                updateTransaction.rollback();
+            }
+            System.out.println("updateUserPassword update error");
+            updateUserUpdateException.printStackTrace();
+        } finally {
+            updateSession.close();
+        }
+    }
+
+
     public Integer createUser(String firstName, String lastName, String email, String hashedPwd,
                               boolean adminGrants, double favLocationX, double favLocationY) {
         Session createSession = this.userSessionFactory.openSession();

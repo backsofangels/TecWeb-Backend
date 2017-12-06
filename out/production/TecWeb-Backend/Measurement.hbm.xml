@@ -14,7 +14,7 @@
             <generator class="native"/>
         </id>
 
-        <property name="measurementDate" column="measurementDate" type="date"/>
+        <property name="measurementDate" column="measurementDate" type="timestamp"/>
         <property name="drillID" column="iddrill" type="int"/>
         <property name="pollutantID" column="idpollutant" type="int"/>
         <property name="quantityMeasured" column="quantity" type="double"/>

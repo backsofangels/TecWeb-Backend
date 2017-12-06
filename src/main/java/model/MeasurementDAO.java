@@ -7,11 +7,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class MeasurementDAO {
     private SessionFactory measurementSessionFactory;
@@ -75,6 +74,33 @@ public class MeasurementDAO {
             retrieveSession.close();
         }
         return measurementResults;
+    }
+
+    public List<Double> getMeasurementByDays(Date beginDate, Date endDate, int drillID) {
+        Session measurementDaysSession = this.measurementSessionFactory.openSession();
+        Transaction retrieveTransaction = null;
+        List<MeasurementAVG> queryResult = new ArrayList<MeasurementAVG>();
+        List<Double> avg = new ArrayList<>();
+
+        try {
+            retrieveTransaction = measurementDaysSession.beginTransaction();
+            Query query= measurementDaysSession.createQuery("select avg(quantityMeasured) FROM Measurement where drillID=:drillIdentifier and " +
+                    "measurementDate between :beginDate and :endDate group by pollutantID")
+                    .setParameter("beginDate", beginDate)
+                    .setParameter("endDate", endDate)
+                    .setParameter("drillIdentifier", drillID);
+            avg = query.list();
+            retrieveTransaction.commit();
+        } catch (HibernateException getMeasurementByDaysException) {
+            if (retrieveTransaction != null) {
+                retrieveTransaction.rollback();
+            }
+            System.out.println("Error in getMeasurementByDays");
+            getMeasurementByDaysException.printStackTrace();
+        } finally {
+            measurementDaysSession.close();
+        }
+        return avg;
     }
 
     public Integer createMeasurement(Date measurementDate, int drillID, int pollutantID, int quantityMeasured) {
