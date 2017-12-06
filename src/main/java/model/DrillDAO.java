@@ -14,7 +14,7 @@ public class DrillDAO {
 
     private DrillDAO() {}
 
-    public DrillDAO getDrillDAOInstance() {
+    public static DrillDAO getDrillDAOInstance() {
         return instance;
     }
 
@@ -110,5 +110,26 @@ public class DrillDAO {
         } finally {
             deleteSession.close();
         }
+    }
+
+    public Drill getDrillByID(int drillID) {
+        Session retrieveDrillByIDSession = this.drillSessionFactory.openSession();
+        Transaction retrieveTransaction = null;
+        Drill queryResult = new Drill();
+
+        try {
+            retrieveTransaction = retrieveDrillByIDSession.beginTransaction();
+            queryResult = retrieveDrillByIDSession.get(Drill.class, drillID);
+            retrieveTransaction.commit();
+        } catch (HibernateException getDrillByIdRetrieveException) {
+            if (retrieveTransaction != null) {
+                retrieveTransaction.rollback();
+            }
+            System.out.println("Error in getDrillById");
+            getDrillByIdRetrieveException.printStackTrace();
+        } finally {
+            retrieveDrillByIDSession.close();
+        }
+        return queryResult;
     }
 }
