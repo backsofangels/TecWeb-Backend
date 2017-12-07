@@ -13,20 +13,18 @@ public class User {
     private String email;
     private String hashedPwd;
     private boolean adminGrants;
-    private double favLocationX;
-    private double favLocationY;
+    private int favoriteDrill;
 
     public User() {}
 
     public User(String firstName, String lastName, String email,
-                String hashedPwd, boolean adminGrants, double favLocationX, double favLocationY) {
+                String hashedPwd, boolean adminGrants, int favDrillIdentifier) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.hashedPwd = hashedPwd;
         this.adminGrants = adminGrants;
-        this.favLocationX = favLocationX;
-        this.favLocationY = favLocationY;
+        this.favoriteDrill = favDrillIdentifier;
     }
 
     public int getUserID() {
@@ -77,20 +75,11 @@ public class User {
         this.adminGrants = adminGrants;
     }
 
-    public double getFavLocationX() {
-        return this.favLocationX;
+    public void setFavoriteDrill(int favoriteDrill) {
+        this.favoriteDrill = favoriteDrill;
     }
 
-    public void setFavLocationX(double favLocationX) {
-        this.favLocationX = favLocationX;
+    public int getFavoriteDrill() {
+        return favoriteDrill;
     }
-
-    public double getFavLocationY() {
-        return this.favLocationY;
-    }
-
-    public void setFavLocationY(double favLocationY) {
-        this.favLocationY = favLocationY;
-    }
-
 }

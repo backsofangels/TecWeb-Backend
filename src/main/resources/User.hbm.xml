@@ -19,7 +19,6 @@
         <property name="email" column="email" type="string"/>
         <property name="hashedPwd" column="hashedPwd" type="string"/>
         <property name="adminGrants" column="adminGrants" type="boolean"/>
-        <property name="favLocationX" column="favLocationX" type="double"/>
-        <property name="favLocationY" column="favLocationY" type="double"/>
+        <property name="favoriteDrill" column="favDrillID" type="int"/>
     </class>
 </hibernate-mapping>

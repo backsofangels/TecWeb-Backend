@@ -75,11 +75,17 @@ public class UserDAO {
     public User retrieveUserInfosByEmail(String email) {
         Session retrieveSession = this.userSessionFactory.openSession();
         Transaction retrieveTransaction = null;
-        User queryResult = null;
+        List queryResult = null;
+        User userFound = null;
 
         try {
             retrieveTransaction = retrieveSession.beginTransaction();
-            queryResult = retrieveSession.get(User.class, email);
+            queryResult = retrieveSession.createQuery("FROM User where email=:email")
+                    .setParameter("email", email)
+                    .list();
+            if (queryResult.toArray().length != 0) {
+                userFound = (User) queryResult.get(0);
+            }
             retrieveTransaction.commit();
         } catch (HibernateException retrieveUserException) {
             if (retrieveTransaction != null) {
@@ -90,7 +96,7 @@ public class UserDAO {
         } finally {
             retrieveSession.close();
         }
-        return queryResult;
+        return userFound;
     }
 
     public void updatePassword(String hashedPwd, int userID) {
@@ -115,15 +121,13 @@ public class UserDAO {
     }
 
 
-    public Integer createUser(String firstName, String lastName, String email, String hashedPwd,
-                              boolean adminGrants, double favLocationX, double favLocationY) {
+    public Integer createUser(User userToSave) {
         Session createSession = this.userSessionFactory.openSession();
         Transaction createTransaction = null;
         Integer userID = null;
 
         try {
             createTransaction = createSession.beginTransaction();
-            User userToSave = new User(firstName, lastName, email, hashedPwd, adminGrants, favLocationX, favLocationY);
             userID = (Integer) createSession.save(userToSave);
             createTransaction.commit();
         } catch (HibernateException createUserCreateException) {
@@ -148,8 +152,7 @@ public class UserDAO {
             userToUpdate.setFirstName(updatedUser.getFirstName());
             userToUpdate.setLastName(updatedUser.getLastName());
             userToUpdate.setEmail(updatedUser.getEmail());
-            userToUpdate.setFavLocationX(updatedUser.getFavLocationX());
-            userToUpdate.setFavLocationY(updatedUser.getFavLocationY());
+            userToUpdate.setFavoriteDrill(updatedUser.getFavoriteDrill());
             updateSession.update(userToUpdate);
             updateTransaction.commit();
         } catch (HibernateException updateUserUpdateException) {
