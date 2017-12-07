@@ -24,7 +24,9 @@ public class Main {
         char[] pwd = password.toCharArray();
 /*        auth.userRegistration("Giangiacomo", "Fristulli","fristulli@gmail.com",
                 pwd, false, 1);*/
-        Tuple result = auth.loginHandler("fristulli@gmail.com", password);
-        System.out.println("Third try, all right:" + result.toString());
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGlmaWVyIjo2LCJmaXJzdE5hbWUiOiJHaWFuZ2lhY29tbyIsImxhc3ROYW1lIjoiRnJpc3R1bGxpIiwiZmF2b3JpdGVEcmlsbCI6MSwiaXNzIjoicG9sbHV0ZWNoLmNvbSIsImV4cCI6MTUxMjY0NzM1MCwiZW1haWwiOiJmcmlzdHVsbGlAZ21haWwuY29tIn0.ec0fGGm2pf3kinlUz0WSwx5OIZ33cc8T9kkvhd-kHeo";
+
+        Tuple result = auth.grantAuthorization(token);
+        System.out.println(result.toString());
     }
 }

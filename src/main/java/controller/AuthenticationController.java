@@ -4,24 +4,32 @@
 
 package main.java.controller;
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTCreator;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.google.gson.Gson;
+import main.java.model.Tuple;
+import main.java.model.User;
+import main.java.model.UserDAO;
+import main.java.utilities.AuthorizationLevels;
 import main.java.utilities.LoginStatus;
 import main.java.utilities.PasswordAuthentication;
 import main.java.utilities.RegistrationStatus;
-import main.java.model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 import java.io.UnsupportedEncodingException;
-import java.time.ZonedDateTime;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 
 public class AuthenticationController {
     private UserDAO userManager = UserDAO.getUserDAOInstance();
-    private SessionFactory hibernateSessionFactory = null;
+    private SessionFactory hibernateSessionFactory;
     private PasswordAuthentication authenticator = new PasswordAuthentication();
+    private Gson jsonManager = new Gson();
 
     public AuthenticationController() {
         try {
@@ -77,7 +85,7 @@ public class AuthenticationController {
         cal.add(Calendar.HOUR_OF_DAY, 1);
 
         try {
-            Algorithm hashingAlgorythm = Algorithm.HMAC256("secret");
+            Algorithm hashingAlgorithm = Algorithm.HMAC256("secret");
             token = JWT.create()
                     .withIssuer("pollutech.com")
                     .withClaim("identifier", userInformations.getUserID())
@@ -86,7 +94,7 @@ public class AuthenticationController {
                     .withClaim("email", userInformations.getEmail())
                     .withClaim("favoriteDrill", userInformations.getFavoriteDrill())
                     .withExpiresAt(cal.getTime())
-                    .sign(hashingAlgorythm);
+                    .sign(hashingAlgorithm);
         } catch(UnsupportedEncodingException unicodeException) {
             System.out.println("UTF Exception");
             unicodeException.printStackTrace();
@@ -94,5 +102,48 @@ public class AuthenticationController {
             System.out.println("JWT creation exception");
         }
         return token;
+    }
+
+    public Tuple grantAuthorization (String tokenString) {
+        AuthorizationLevels authGrants = AuthorizationLevels.NOT_AUTHORIZED;
+        String renewedJWT = null;
+        String decodedPayload = null;
+        DecodedJWT decodedToken = null;
+        Tuple result = null;
+
+        try {
+            Algorithm hashingAlgorithm = Algorithm.HMAC256("secret");
+            JWTVerifier verifier = JWT.require(hashingAlgorithm)
+                    .withIssuer("pollutech.com")
+                    .build();
+            decodedToken = verifier.verify(tokenString);
+            byte[] decoded = Base64.getDecoder().decode(decodedToken.getPayload());
+            decodedPayload = new String(decoded);
+        } catch (UnsupportedEncodingException UTFException) {
+            System.out.println("UTFException in token validation");
+            UTFException.printStackTrace();
+        } catch (JWTVerificationException VerificationException) {
+            System.out.println("JWTVerificationException");
+            VerificationException.printStackTrace();
+        }
+
+        if (decodedToken != null) {
+            authGrants = AuthorizationLevels.USER;
+            boolean admin = jsonManager.fromJson(decodedPayload, User.class).isAdminGrants();
+            if (admin) {
+                authGrants = AuthorizationLevels.ADMIN;
+            }
+        }
+
+        switch (authGrants) {
+            case ADMIN: result = new Tuple(AuthorizationLevels.ADMIN, generateJWT(jsonManager.fromJson(decodedPayload, User.class)));
+                break;
+            case NOT_AUTHORIZED: result = new Tuple(AuthorizationLevels.NOT_AUTHORIZED, null);
+                break;
+            case USER: result = new Tuple(AuthorizationLevels.USER, generateJWT(jsonManager.fromJson(decodedPayload, User.class)));
+                break;
+        }
+
+        return result;
     }
 }
