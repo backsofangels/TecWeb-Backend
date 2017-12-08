@@ -24,8 +24,8 @@ public class HelloWorldJWT {
             String token = req.cookie("jwt");
             String decodedToken = "No decoded token";
             try {
-                Algorithm hashingAlgorythm = Algorithm.HMAC256("secret");
-                JWTVerifier verifier = JWT.require(hashingAlgorythm)
+                Algorithm hashingAlgorithm = Algorithm.HMAC256("secret");
+                JWTVerifier verifier = JWT.require(hashingAlgorithm)
                         .withIssuer("salvini")
                         .build();
                 DecodedJWT jwt = verifier.verify(token);

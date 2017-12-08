@@ -44,21 +44,25 @@ public class AuthenticationController {
 
     public RegistrationStatus userRegistration(String firstName, String lastName, String email,
                                                char[] pwd, boolean isAdmin, int favoriteDrill) {
-        RegistrationStatus outcome = null;
+        RegistrationStatus outcome;
         userManager.setUserSessionFactory(hibernateSessionFactory);
-        User newUser = new User();
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
-        newUser.setEmail(email);
-        newUser.setHashedPwd(authenticator.hash(pwd));
-        newUser.setAdminGrants(isAdmin);
-        newUser.setFavoriteDrill(favoriteDrill);
-        Integer newUserID = userManager.createUser(newUser);
-        if (newUserID != null) {
-            outcome = RegistrationStatus.SUCCEEDED;
-        } else {
-            outcome = RegistrationStatus.FAILED;
-        }
+        User checkIfAlreadyPresent = userManager.retrieveUserInfosByEmail(email);
+
+        if (checkIfAlreadyPresent == null) {
+            User newUser = new User();
+            newUser.setFirstName(firstName);
+            newUser.setLastName(lastName);
+            newUser.setEmail(email);
+            newUser.setHashedPwd(authenticator.hash(pwd));
+            newUser.setAdminGrants(isAdmin);
+            newUser.setFavoriteDrill(favoriteDrill);
+            Integer newUserID = userManager.createUser(newUser);
+            if (newUserID != null) {
+                outcome = RegistrationStatus.SUCCEEDED;
+            } else {
+                outcome = RegistrationStatus.FAILED;
+            }
+        } else outcome = RegistrationStatus.USER_ALREADY_PRESENT;
         return outcome;
     }
 
@@ -76,6 +80,15 @@ public class AuthenticationController {
         } else outcome = LoginStatus.NOT_REGISTERED;
 
         return new Tuple(outcome, jwtToken);
+    }
+
+    public String userUpdate(String firstName, String lastName, String email, int favoriteDrill) {
+        User userToUpdate = userManager.retrieveUserInfosByEmail(email);
+        userToUpdate.setFirstName(firstName);
+        userToUpdate.setLastName(lastName);
+        userToUpdate.setFavoriteDrill(favoriteDrill);
+        userManager.updateUser(userToUpdate.getUserID(), userToUpdate);
+        return generateJWT(userManager.retrieveUserInfosByEmail(email));
     }
 
     private String generateJWT(User userInformations) {
@@ -104,9 +117,30 @@ public class AuthenticationController {
         return token;
     }
 
+    public boolean jwtValidation (String token) {
+        DecodedJWT jwt = null;
+        boolean isValid = false;
+        try {
+            Algorithm hashingAlgorithm = Algorithm.HMAC256("secret");
+            JWTVerifier verifier= JWT.require(hashingAlgorithm)
+                    .withIssuer("pollutech.com")
+                    .build();
+            jwt = verifier.verify(token);
+        } catch (UnsupportedEncodingException UTFException) {
+            UTFException.printStackTrace();
+        } catch (JWTVerificationException verificationException) {
+            verificationException.printStackTrace();
+        }
+
+        if (jwt != null) {
+            isValid = true;
+        }
+        return isValid;
+    }
+
+
     public Tuple grantAuthorization (String tokenString) {
         AuthorizationLevels authGrants = AuthorizationLevels.NOT_AUTHORIZED;
-        String renewedJWT = null;
         String decodedPayload = null;
         DecodedJWT decodedToken = null;
         Tuple result = null;

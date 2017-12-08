@@ -151,7 +151,6 @@ public class UserDAO {
             User userToUpdate = (User) updateSession.get(User.class, userID);
             userToUpdate.setFirstName(updatedUser.getFirstName());
             userToUpdate.setLastName(updatedUser.getLastName());
-            userToUpdate.setEmail(updatedUser.getEmail());
             userToUpdate.setFavoriteDrill(updatedUser.getFavoriteDrill());
             updateSession.update(userToUpdate);
             updateTransaction.commit();
