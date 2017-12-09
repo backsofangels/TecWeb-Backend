@@ -17,22 +17,18 @@ import java.util.List;
 
 public class SearchController {
 
-    //DONE: Tutte le sonde presenti con le loro coordinate
-    //DONE: Data una sonda, restituire i rilevamenti su quella sonda nelle ultime sei ore (AKA i più recenti) per ogni inquinante
-    //DONE: Data una sonda, restituire la media dei rilevamenti dato un intervallo di giorni per ogni inquinante
-
-    //TODO: Code refactoring and clearing
-    //TODO: declare and instance manager sessionFactories in the constructor of SearchController
-
     private DrillDAO drillManager = DrillDAO.getDrillDAOInstance();
     private MeasurementDAO measurementManager = MeasurementDAO.getMeasurementDAOSharedInstance();
     private PollutantDAO pollutantManager = PollutantDAO.getPollutantDAOInstance();
-    private SessionFactory hibernateSessionFactory = null;
+    private SessionFactory hibernateSessionFactory;
     private Gson jsonCreator = new Gson();
 
     public SearchController() {
         try {
             hibernateSessionFactory = new Configuration().configure().buildSessionFactory();
+            drillManager.setDrillSessionFactory(hibernateSessionFactory);
+            measurementManager.setMeasurementSessionFactory(hibernateSessionFactory);
+            pollutantManager.setPollutantSessionFactory(hibernateSessionFactory);
             System.out.println("Factory created");
         } catch (Throwable e) {
             System.out.println("Factory error");
@@ -41,21 +37,35 @@ public class SearchController {
         }
     }
 
-    public String retrieveDrillByID(int drillIdentifier) {
-        drillManager.setDrillSessionFactory(hibernateSessionFactory);
-        Drill queryResult = drillManager.getDrillByID(drillIdentifier);
-        return jsonCreator.toJson(queryResult);
-    }
 
     public String getAllDrills() {
-        drillManager.setDrillSessionFactory(hibernateSessionFactory);
         List<Drill> queryResult = drillManager.getAllDrills();
         return jsonCreator.toJson(queryResult);
     }
 
+    public String getAllPollutants() {
+        List<Pollutant> queryResult = pollutantManager.getAllPollutants();
+        return jsonCreator.toJson(queryResult);
+    }
+
+    public String getPollutantByIdentifier(Integer pollutantIdentifier) {
+        return jsonCreator.toJson(pollutantManager.getPollutantByIdentifier(pollutantIdentifier));
+    }
+
+    public String getAllMeasurements() {
+        return jsonCreator.toJson(measurementManager.getAllMeasurements());
+    }
+
+    public String getMeasurementByIdentifier(Integer measurementIdentifier) {
+        return jsonCreator.toJson(measurementManager.getMeasurementByIdentifier(measurementIdentifier));
+    }
+
+    public String retrieveDrillByID(int drillIdentifier) {
+        Drill queryResult = drillManager.getDrillByID(drillIdentifier);
+        return jsonCreator.toJson(queryResult);
+    }
+
     public String getLatestMeasurementsByDrill(int drillIdentifier) {
-        measurementManager.setMeasurementSessionFactory(hibernateSessionFactory);
-        pollutantManager.setPollutantSessionFactory(hibernateSessionFactory);
         List<Pollutant> pollutants = pollutantManager.getAllPollutants();
         List<Measurement> measurementQueryResult = measurementManager.getLatestMeasurementsByDrill(drillIdentifier, pollutants.toArray().length);
         ArrayList<JoinedMeasurement> merging = measurementAndPollutantMerge(pollutants, measurementQueryResult);
@@ -65,8 +75,13 @@ public class SearchController {
     public ArrayList<JoinedMeasurement> measurementAndPollutantMerge (List<Pollutant> pollutantsToMerge, List<Measurement> measurementsToMerge) {
         ArrayList<JoinedMeasurement> mergeResult = new ArrayList<>();
 
+        //THIS ONE IS KINDA TRICKY TO EXPLAIN
         for (Measurement m:measurementsToMerge) {
-            Pollutant pollutantMonitored = pollutantsToMerge.stream().filter(pollutant -> pollutant.getPollutantID() == m.getPollutantID()).findFirst().get();
+            Pollutant pollutantMonitored = pollutantsToMerge
+                    .stream() //conforms the pollutants list to the stream type
+                    .filter(pollutant -> pollutant.getPollutantID() == m.getPollutantID()) //here happens the actual filtering
+                    .findFirst() //finds the first instance present in the stream
+                    .get(); //retrieves that instance
             JoinedMeasurement mergedMeasurement = new JoinedMeasurement(m.getMeasurementDate(), pollutantMonitored, m.getQuantityMeasured());
             mergeResult.add(mergedMeasurement);
         }
@@ -74,9 +89,6 @@ public class SearchController {
     }
 
     public String getMeasurementsAVG(int drillIdentifier, String beginDateString, String endDateString) {
-        measurementManager.setMeasurementSessionFactory(hibernateSessionFactory);
-        pollutantManager.setPollutantSessionFactory(hibernateSessionFactory);
-        drillManager.setDrillSessionFactory(hibernateSessionFactory);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         MeasurementAVG queryFinalResult = new MeasurementAVG();
         List<Double> avgsQueryResult;
