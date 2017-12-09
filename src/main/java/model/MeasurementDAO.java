@@ -76,6 +76,26 @@ public class MeasurementDAO {
         return measurementResults;
     }
 
+    public Measurement getMeasurementByIdentifier(Integer measurementIdentifier) {
+        Session retrieveSession = this.measurementSessionFactory.openSession();
+        Transaction retrieveTransaction = null;
+        Measurement queryResult = null;
+
+        try {
+            retrieveTransaction = retrieveSession.beginTransaction();
+            queryResult = retrieveSession.get(Measurement.class, measurementIdentifier);
+            retrieveTransaction.commit();
+        } catch (HibernateException getMeasurementByIdentifierException) {
+            if (retrieveTransaction != null) {
+                retrieveTransaction.rollback();
+            }
+            getMeasurementByIdentifierException.printStackTrace();
+        } finally {
+            retrieveSession.close();
+        }
+        return queryResult;
+    }
+
     public List<Double> getMeasurementByDays(Date beginDate, Date endDate, int drillID) {
         Session measurementDaysSession = this.measurementSessionFactory.openSession();
         Transaction retrieveTransaction = null;
@@ -103,7 +123,7 @@ public class MeasurementDAO {
         return avg;
     }
 
-    public Integer createMeasurement(Date measurementDate, int drillID, int pollutantID, int quantityMeasured) {
+    public Integer createMeasurement(Date measurementDate, int drillID, int pollutantID, double quantityMeasured) {
         Session writingSession = this.measurementSessionFactory.openSession();
         Transaction writeTransaction = null;
         Integer measurementID = null;

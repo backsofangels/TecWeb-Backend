@@ -4,7 +4,6 @@
 
 package main.java.controller;
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -34,7 +33,8 @@ public class AuthenticationController {
     public AuthenticationController() {
         try {
             hibernateSessionFactory = new Configuration().configure().buildSessionFactory();
-            System.out.println("Factory created");
+            userManager.setUserSessionFactory(hibernateSessionFactory);
+            System.out.println("Factory created and setted");
         } catch (Throwable e) {
             System.out.println("Factory error");
             e.printStackTrace();
@@ -42,10 +42,11 @@ public class AuthenticationController {
         }
     }
 
+    //Registration function, returns a case of the enum RegistrationStatus to abstract the logic
+    //of possible database errors
     public RegistrationStatus userRegistration(String firstName, String lastName, String email,
                                                char[] pwd, boolean isAdmin, int favoriteDrill) {
         RegistrationStatus outcome;
-        userManager.setUserSessionFactory(hibernateSessionFactory);
         User checkIfAlreadyPresent = userManager.retrieveUserInfosByEmail(email);
 
         if (checkIfAlreadyPresent == null) {
@@ -66,10 +67,12 @@ public class AuthenticationController {
         return outcome;
     }
 
+    //Returns a tuple with two informations
+    //First tuple field: outcome of the login, abstracted with the LoginStatus enum case
+    //Second tuple field: outcome OK -> user's jwt; outcome BAD -> null
     public Tuple loginHandler(String userEmail, String userHashedPwd) {
         String jwtToken = null;
-        LoginStatus outcome = null;
-        userManager.setUserSessionFactory(hibernateSessionFactory);
+        LoginStatus outcome;
         User getUserFromDB = userManager.retrieveUserInfosByEmail(userEmail);
 
         if (getUserFromDB != null) {
@@ -82,6 +85,7 @@ public class AuthenticationController {
         return new Tuple(outcome, jwtToken);
     }
 
+    //Returns the updated JWT of the user, with all his new informations
     public String userUpdate(String firstName, String lastName, String email, int favoriteDrill) {
         User userToUpdate = userManager.retrieveUserInfosByEmail(email);
         userToUpdate.setFirstName(firstName);
@@ -91,6 +95,7 @@ public class AuthenticationController {
         return generateJWT(userManager.retrieveUserInfosByEmail(email));
     }
 
+    //Returns the JWT of the user based on his informations hashed with the SHA512 algorythm
     private String generateJWT(User userInformations) {
         String token = null;
         Calendar cal = Calendar.getInstance();
@@ -117,6 +122,7 @@ public class AuthenticationController {
         return token;
     }
 
+    //Returns true if the JWT signature is valid, false otherwise
     public boolean jwtValidation (String token) {
         DecodedJWT jwt = null;
         boolean isValid = false;
@@ -138,7 +144,10 @@ public class AuthenticationController {
         return isValid;
     }
 
-
+    //Returns a tuple with two informations
+    //First tuple field: authorization level based on the JWT decoding sent by the client
+    //user not authorized -> NOT_AUTHORIZED, normal user authorization -> USER, admin authorization -> ADMIN
+    //Second tuple field, renewed JWT of the user if authorization USER or ADMIN, else null;
     public Tuple grantAuthorization (String tokenString) {
         AuthorizationLevels authGrants = AuthorizationLevels.NOT_AUTHORIZED;
         String decodedPayload = null;

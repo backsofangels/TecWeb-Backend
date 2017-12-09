@@ -50,6 +50,26 @@ public class PollutantDAO {
         return pollutantsQueryResult;
     }
 
+    public Pollutant getPollutantByIdentifier (Integer pollutantID) {
+        Session retrieveSession = this.pollutantSessionFactory.openSession();
+        Transaction retrieveTransaction = null;
+        Pollutant queryResult = null;
+
+        try {
+            retrieveTransaction = retrieveSession.beginTransaction();
+            queryResult = (Pollutant) retrieveSession.get(Pollutant.class, pollutantID);
+            retrieveTransaction.commit();
+        } catch (HibernateException getPollutantByIDException) {
+            if (retrieveTransaction != null) {
+                retrieveTransaction.rollback();
+            }
+            getPollutantByIDException.printStackTrace();
+        } finally {
+            retrieveSession.close();
+        }
+        return queryResult;
+    }
+
     public Integer createPollutant(String pollutantName, double pollutantMaximumThreshold) {
         Session writingSession = this.pollutantSessionFactory.openSession();
         Transaction writeTransaction = null;
