@@ -73,21 +73,21 @@ public class SearchController {
         return mergeResult;
     }
 
-    public String getMeasurementsAVG() {
+    public String getMeasurementsAVG(int drillIdentifier, String beginDateString, String endDateString) {
         measurementManager.setMeasurementSessionFactory(hibernateSessionFactory);
         pollutantManager.setPollutantSessionFactory(hibernateSessionFactory);
         drillManager.setDrillSessionFactory(hibernateSessionFactory);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         MeasurementAVG queryFinalResult = new MeasurementAVG();
-        List<Double> avgsQueryResult = new ArrayList<>();
-        List<Pollutant> pollutants = new ArrayList<>();
+        List<Double> avgsQueryResult;
+        List<Pollutant> pollutants;
 
         try {
-            Date beginDate =  sdf.parse("01/01/1990");
-            Date endDate = sdf.parse("01/01/2020");
-            avgsQueryResult = measurementManager.getMeasurementByDays(beginDate, endDate, 1);
+            Date beginDate =  sdf.parse(beginDateString);
+            Date endDate = sdf.parse(endDateString);
+            avgsQueryResult = measurementManager.getMeasurementByDays(beginDate, endDate, drillIdentifier);
             pollutants = pollutantManager.getAllPollutants();
-            Drill drill = drillManager.getDrillByID(1);
+            Drill drill = drillManager.getDrillByID(drillIdentifier);
             queryFinalResult.setDrillInformations(drill);
             queryFinalResult.setMinorBoundary(beginDate);
             queryFinalResult.setMaximumBoundary(endDate);
