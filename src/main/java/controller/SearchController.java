@@ -6,6 +6,7 @@ package main.java.controller;
 
 import com.google.gson.Gson;
 import main.java.model.*;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import java.text.ParseException;
@@ -20,21 +21,12 @@ public class SearchController {
     private DrillDAO drillManager = DrillDAO.getDrillDAOInstance();
     private MeasurementDAO measurementManager = MeasurementDAO.getMeasurementDAOSharedInstance();
     private PollutantDAO pollutantManager = PollutantDAO.getPollutantDAOInstance();
-    private SessionFactory hibernateSessionFactory;
     private Gson jsonCreator = new Gson();
 
-    public SearchController() {
-        try {
-            hibernateSessionFactory = new Configuration().configure().buildSessionFactory();
-            drillManager.setDrillSessionFactory(hibernateSessionFactory);
-            measurementManager.setMeasurementSessionFactory(hibernateSessionFactory);
-            pollutantManager.setPollutantSessionFactory(hibernateSessionFactory);
-            System.out.println("Factory created");
-        } catch (Throwable e) {
-            System.out.println("Factory error");
-            e.printStackTrace();
-            throw new ExceptionInInitializerError();
-        }
+    public SearchController(SessionFactory hibernateSessionFactory) {
+        drillManager.setDrillSessionFactory(hibernateSessionFactory);
+        measurementManager.setMeasurementSessionFactory(hibernateSessionFactory);
+        pollutantManager.setPollutantSessionFactory(hibernateSessionFactory);
     }
 
 
