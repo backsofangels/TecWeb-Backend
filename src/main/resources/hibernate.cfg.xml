@@ -28,7 +28,7 @@
         </property>
 
         <property name="hibernate.connection.password">
-            salvatore
+
         </property>
 
         <property name="show_sql">

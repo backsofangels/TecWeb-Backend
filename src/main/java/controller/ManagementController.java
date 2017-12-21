@@ -39,6 +39,7 @@ public class ManagementController {
     }
 
     public String addDrill(String drillJSON) {
+        System.out.println("Tua nonna");
         JsonObject drillJsonObject = jsonParser.parse(drillJSON).getAsJsonObject();
         double xCoordinate = drillJsonObject.get("xCoordinate").getAsDouble();
         double yCoordinate = drillJsonObject.get("yCoordinate").getAsDouble();

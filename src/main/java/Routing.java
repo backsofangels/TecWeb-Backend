@@ -90,9 +90,9 @@ public class Routing {
             path("/add", () -> {
                 post("/drill", (request, response) -> {
                     String token = request.cookie("jwt");
-                    Tuple outcome = auth.grantAuthorization(token);
+                    Tuple<AuthorizationLevels, String> outcome = auth.grantAuthorization(token);
                     if (outcome.getFirstTupleElement() == AuthorizationLevels.ADMIN) {
-                        String newDrill = management.addDrill(response.body());
+                        String newDrill = management.addDrill(request.body());
                         response.type(ContentTypes.JSON.type());
                         response.body(newDrill);
                     } else {
@@ -105,7 +105,7 @@ public class Routing {
                     String token = request.cookie("jwt");
                     Tuple outcome = auth.grantAuthorization(token);
                     if (outcome.getFirstTupleElement() == AuthorizationLevels.ADMIN) {
-                        String newPollutant = management.addPollutant(response.body());
+                        String newPollutant = management.addPollutant(request.body());
                         response.type(ContentTypes.JSON.type());
                         response.body(newPollutant);
                     } else {
@@ -225,7 +225,7 @@ public class Routing {
                     final String[] combination = decoded.split(":", 2);
                     Tuple<LoginStatus, String> loginOutcome = auth.loginHandler(combination[0], combination[1]);
                     if (loginOutcome.getFirstTupleElement() == LoginStatus.SUCCEDED) {
-                        response.cookie("jwt", loginOutcome.getSecondTupleElement());
+                        response.cookie("127.0.0.1", "/", "jwt", loginOutcome.getSecondTupleElement(), 3600, false, true);
                         response.status(StatusCodes.OK.code());
                     } else if (loginOutcome.getFirstTupleElement() == LoginStatus.FAILED) {
                         response.status(StatusCodes.UNAUTHORIZED.code());
@@ -265,7 +265,7 @@ public class Routing {
                         response.status(StatusCodes.UNAUTHORIZED.code());
                     } else {
                         response.status(StatusCodes.OK.code());
-                        response.cookie("jwt", outcome.getSecondTupleElement());
+                        response.cookie("127.0.0.1", "/", "jwt", outcome.getSecondTupleElement(), 3600, false, true);
                     }
                     return response;
                 });
@@ -285,7 +285,7 @@ public class Routing {
                         int favDrill = obj.get("favoriteDrill").getAsInt();
                         String newToken = auth.userUpdate(firstName, lastName, email, favDrill);
                         response.status(StatusCodes.OK.code());
-                        response.cookie("jwt", newToken);
+                        response.cookie("127.0.0.1", "/", "jwt", newToken, 3600, false, true);
                     } else {
                         response.status(StatusCodes.UNAUTHORIZED.code());
                     }

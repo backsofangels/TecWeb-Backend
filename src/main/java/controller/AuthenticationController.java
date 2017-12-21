@@ -110,6 +110,7 @@ public class AuthenticationController {
                     .withClaim("firstName", userInformations.getFirstName())
                     .withClaim("lastName", userInformations.getLastName())
                     .withClaim("email", userInformations.getEmail())
+                    .withClaim("admin", userInformations.isAdminGrants())
                     .withClaim("favoriteDrill", userInformations.getFavoriteDrill())
                     .withExpiresAt(cal.getTime())
                     .sign(hashingAlgorithm);
@@ -155,6 +156,7 @@ public class AuthenticationController {
         Tuple result = null;
 
         try {
+
             Algorithm hashingAlgorithm = Algorithm.HMAC256("secret");
             JWTVerifier verifier = JWT.require(hashingAlgorithm)
                     .withIssuer("pollutech.com")
