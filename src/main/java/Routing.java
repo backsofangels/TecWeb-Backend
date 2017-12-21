@@ -6,21 +6,28 @@ package main.java;
 
 import static spark.Spark.*;
 import main.java.controller.AuthenticationController;
+import main.java.controller.AutoMeasurement;
 import main.java.controller.ManagementController;
 import main.java.controller.SearchController;
 import main.java.model.Tuple;
 import main.java.utilities.*;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonObject;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import java.util.*;
 
 public class Routing {
 
     //Utilities for the class
-    private static SearchController searching = new SearchController();
-    private static AuthenticationController auth = new AuthenticationController();
-    private static ManagementController management = new ManagementController();
+    private static SessionFactory hibernateSessionFactory = createHibernateSessionFactory();
+    private static SearchController searching = new SearchController(hibernateSessionFactory);
+    private static AuthenticationController auth = new AuthenticationController(hibernateSessionFactory);
+    private static ManagementController management = new ManagementController(hibernateSessionFactory);
     private static JsonParser jsonParser = new JsonParser();
+    private static Timer t = new Timer();
+    private static AutoMeasurement m = new AutoMeasurement(hibernateSessionFactory);
 
     public static void main(String[] args) {
         //Port setting for the server, if needed another port change this one
@@ -293,10 +300,26 @@ public class Routing {
                 });
             });
         });
+
+        t.scheduleAtFixedRate(m, 0, 5000);
     }
 
     //Utility function that decodes a base64 encoded string to a normal string
     private static String base64Decoding(byte[] toDecode) {
         return new String(Base64.getDecoder().decode(toDecode));
+    }
+
+    private static SessionFactory createHibernateSessionFactory() {
+        SessionFactory hibernateSessionFactory;
+
+        try {
+            hibernateSessionFactory = new Configuration().configure().buildSessionFactory();
+            System.out.println("Factory created");
+        } catch (Throwable e) {
+            System.out.println("Factory error");
+            e.printStackTrace();
+            throw new ExceptionInInitializerError();
+        }
+        return hibernateSessionFactory;
     }
 }

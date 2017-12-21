@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonObject;
 import main.java.model.*;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import java.text.ParseException;
@@ -17,25 +18,16 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ManagementController {
-    private SessionFactory hibernateSessionFactory;
     private DrillDAO drillManager = DrillDAO.getDrillDAOInstance();
     private MeasurementDAO measurementManager = MeasurementDAO.getMeasurementDAOSharedInstance();
     private PollutantDAO pollutantManager = PollutantDAO.getPollutantDAOInstance();
     private Gson jsonCreator = new Gson();
     private JsonParser jsonParser = new JsonParser();
 
-    public ManagementController() {
-        try {
-            hibernateSessionFactory = new Configuration().configure().buildSessionFactory();
-            drillManager.setDrillSessionFactory(hibernateSessionFactory);
-            measurementManager.setMeasurementSessionFactory(hibernateSessionFactory);
-            pollutantManager.setPollutantSessionFactory(hibernateSessionFactory);
-            System.out.println("Factory created");
-        } catch (Throwable e) {
-            System.out.println("Factory error");
-            e.printStackTrace();
-            throw new ExceptionInInitializerError();
-        }
+    public ManagementController(SessionFactory hibernateSessionFactory) {
+        drillManager.setDrillSessionFactory(hibernateSessionFactory);
+        measurementManager.setMeasurementSessionFactory(hibernateSessionFactory);
+        pollutantManager.setPollutantSessionFactory(hibernateSessionFactory);
     }
 
     public String addDrill(String drillJSON) {

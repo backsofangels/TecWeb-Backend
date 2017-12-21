@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="252383c4-6431-436b-a809-8cdd0438f4a0" name="Default" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/TecWeb-Backend/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/out/production/TecWeb-Backend/hibernate.cfg.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/TecWeb-Backend/main/resources/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/out/production/TecWeb-Backend/main/resources/hibernate.cfg.xml" />
@@ -9,6 +10,15 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AuthenticationController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/AuthenticationController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/ManagementController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/ManagementController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
+=======
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/controller/AutoMeasurement.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/utilities/RandomGaussianDouble.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Routing.java" afterPath="$PROJECT_DIR$/src/main/java/Routing.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AuthenticationController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/AuthenticationController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ManagementController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/ManagementController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SearchController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/SearchController.java" />
+>>>>>>> auto-measurements
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,6 +39,7 @@
       <file leaf-file-name="Routing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Routing.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="17">
               <caret line="92" column="96" lean-forward="false" selection-start-line="92" selection-start-column="96" selection-end-line="92" selection-end-column="96" />
               <folding>
@@ -36,21 +47,52 @@
                 <element signature="e#1079#1235#0" expanded="false" />
                 <element signature="e#1823#2101#0" expanded="false" />
                 <element signature="e#2280#2951#0" expanded="false" />
+=======
+            <state relative-caret-position="3567">
+              <caret line="303" column="37" lean-forward="false" selection-start-line="303" selection-start-column="37" selection-end-line="303" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1491#1647#0" expanded="false" />
+                <element signature="e#2235#2513#0" expanded="false" />
+                <element signature="e#2692#3363#0" expanded="false" />
+                <element signature="e#10470#11552#0" expanded="false" />
+                <element signature="e#11659#12820#0" expanded="false" />
+                <element signature="e#12939#13540#0" expanded="false" />
+                <element signature="e#13653#14762#0" expanded="false" />
+>>>>>>> auto-measurements
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="SearchController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/SearchController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="686">
               <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
+=======
+      <file leaf-file-name="AutoMeasurement.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/AutoMeasurement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="54" column="26" lean-forward="false" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1076#1077#0" expanded="true" />
+                <element signature="e#1164#1165#0" expanded="true" />
+                <element signature="e#1513#1514#0" expanded="true" />
+                <element signature="e#1588#1589#0" expanded="true" />
+                <element signature="e#1621#1622#0" expanded="true" />
+                <element signature="e#1688#1689#0" expanded="true" />
+              </folding>
+>>>>>>> auto-measurements
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="AuthorizationLevels.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/utilities/AuthorizationLevels.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -67,36 +109,90 @@
             <state relative-caret-position="68">
               <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
               <folding />
+=======
+      <file leaf-file-name="RandomGaussianDouble.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utilities/RandomGaussianDouble.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+              <folding>
+                <element signature="e#571#572#0" expanded="true" />
+                <element signature="e#642#643#0" expanded="true" />
+              </folding>
+>>>>>>> auto-measurements
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="LoginStatus.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/utilities/LoginStatus.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
               <folding />
+=======
+      <file leaf-file-name="AuthenticationController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/AuthenticationController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="32" column="74" lean-forward="false" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
+              <folding>
+                <element signature="method#userRegistration#0;class#AuthenticationController#0" expanded="false" />
+                <element signature="method#loginHandler#0;class#AuthenticationController#0" expanded="false" />
+                <element signature="method#userUpdate#0;class#AuthenticationController#0" expanded="false" />
+                <element signature="method#generateJWT#0;class#AuthenticationController#0" expanded="false" />
+                <element signature="method#jwtValidation#0;class#AuthenticationController#0" expanded="false" />
+                <element signature="method#grantAuthorization#0;class#AuthenticationController#0" expanded="false" />
+              </folding>
+>>>>>>> auto-measurements
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="PasswordAuthentication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/utilities/PasswordAuthentication.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
               <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding />
+=======
+      <file leaf-file-name="SearchController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/SearchController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="25" column="66" lean-forward="false" selection-start-line="25" selection-start-column="66" selection-end-line="25" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1589#1590#0" expanded="true" />
+                <element signature="e#1671#1672#0" expanded="true" />
+              </folding>
+>>>>>>> auto-measurements
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Tuple.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/Tuple.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
               <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding />
+=======
+      <file leaf-file-name="ManagementController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/ManagementController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="29" column="75" lean-forward="false" selection-start-line="29" selection-start-column="75" selection-end-line="29" selection-end-column="75" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#updateDrill#0;class#ManagementController#0" expanded="false" />
+                <element signature="e#3996#3997#0" expanded="true" />
+                <element signature="e#4065#4066#0" expanded="true" />
+              </folding>
+>>>>>>> auto-measurements
             </state>
           </provider>
         </entry>
@@ -203,11 +299,19 @@
         <option value="$PROJECT_DIR$/src/main/java/model/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/PollutantDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/MeasurementDAO.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/controller/SearchController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/src/main/java/controller/ManagementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/AuthenticationController.java" />
+=======
+        <option value="$PROJECT_DIR$/src/main/java/controller/AuthenticationController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/SearchController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/ManagementController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/utilities/RandomGaussianDouble.java" />
+>>>>>>> auto-measurements
         <option value="$PROJECT_DIR$/src/main/java/Routing.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/AutoMeasurement.java" />
       </list>
     </option>
   </component>
@@ -488,13 +592,21 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32786885" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38069415" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> auto-measurements
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25026512" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1875" sideWeight="0.49344262" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18956336" sideWeight="0.49344262" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> auto-measurements
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17625134" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -562,6 +674,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/src/Drill.java" />
+    <entry file="file://$PROJECT_DIR$/src/Tuple.java" />
+    <entry file="file://$PROJECT_DIR$/src/Pollutant.java" />
+>>>>>>> auto-measurements
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Drills.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Pollutanto.java" />
     <entry file="file://$PROJECT_DIR$/../mysql-connector-java-5.1.45/src/testsuite/BaseTestCase.java" />
@@ -628,8 +746,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="90">
           <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+=======
+        <state relative-caret-position="180">
+          <caret line="16" column="81" lean-forward="false" selection-start-line="16" selection-start-column="81" selection-end-line="16" selection-end-column="81" />
+>>>>>>> auto-measurements
         </state>
       </provider>
     </entry>
@@ -767,6 +890,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/AuthenticationController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1241">
@@ -782,6 +906,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Routing.java">
+=======
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.base/java/util/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="579" column="22" lean-forward="false" selection-start-line="579" selection-start-column="22" selection-end-line="579" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Drill.java">
+>>>>>>> auto-measurements
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="92" column="96" lean-forward="false" selection-start-line="92" selection-start-column="96" selection-end-line="92" selection-end-column="96" />
@@ -820,8 +954,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/utilities/LoginStatus.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="119">
           <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+=======
+        <state relative-caret-position="990">
+          <caret line="69" column="27" lean-forward="false" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
+>>>>>>> auto-measurements
           <folding />
         </state>
       </provider>
@@ -836,12 +975,104 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Tuple.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="272">
           <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+=======
+        <state relative-caret-position="1440">
+          <caret line="95" column="27" lean-forward="false" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="27" />
+>>>>>>> auto-measurements
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AuthenticationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="32" column="74" lean-forward="false" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
+          <folding>
+            <element signature="method#userRegistration#0;class#AuthenticationController#0" expanded="false" />
+            <element signature="method#loginHandler#0;class#AuthenticationController#0" expanded="false" />
+            <element signature="method#userUpdate#0;class#AuthenticationController#0" expanded="false" />
+            <element signature="method#generateJWT#0;class#AuthenticationController#0" expanded="false" />
+            <element signature="method#jwtValidation#0;class#AuthenticationController#0" expanded="false" />
+            <element signature="method#grantAuthorization#0;class#AuthenticationController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/SearchController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="25" column="66" lean-forward="false" selection-start-line="25" selection-start-column="66" selection-end-line="25" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1589#1590#0" expanded="true" />
+            <element signature="e#1671#1672#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/ManagementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="29" column="75" lean-forward="false" selection-start-line="29" selection-start-column="75" selection-end-line="29" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#updateDrill#0;class#ManagementController#0" expanded="false" />
+            <element signature="e#3996#3997#0" expanded="true" />
+            <element signature="e#4065#4066#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utilities/RandomGaussianDouble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding>
+            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#642#643#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Routing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3567">
+          <caret line="303" column="37" lean-forward="false" selection-start-line="303" selection-start-column="37" selection-end-line="303" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1491#1647#0" expanded="false" />
+            <element signature="e#2235#2513#0" expanded="false" />
+            <element signature="e#2692#3363#0" expanded="false" />
+            <element signature="e#10470#11552#0" expanded="false" />
+            <element signature="e#11659#12820#0" expanded="false" />
+            <element signature="e#12939#13540#0" expanded="false" />
+            <element signature="e#13653#14762#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AutoMeasurement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="54" column="26" lean-forward="false" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#1513#1514#0" expanded="true" />
+            <element signature="e#1588#1589#0" expanded="true" />
+            <element signature="e#1621#1622#0" expanded="true" />
+            <element signature="e#1688#1689#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> auto-measurements
   </component>
   <component name="masterDetails">
     <states>

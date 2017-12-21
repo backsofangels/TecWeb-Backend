@@ -17,6 +17,7 @@ import main.java.utilities.AuthorizationLevels;
 import main.java.utilities.LoginStatus;
 import main.java.utilities.PasswordAuthentication;
 import main.java.utilities.RegistrationStatus;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import java.io.UnsupportedEncodingException;
@@ -26,20 +27,11 @@ import java.util.Date;
 
 public class AuthenticationController {
     private UserDAO userManager = UserDAO.getUserDAOInstance();
-    private SessionFactory hibernateSessionFactory;
     private PasswordAuthentication authenticator = new PasswordAuthentication();
     private Gson jsonManager = new Gson();
 
-    public AuthenticationController() {
-        try {
-            hibernateSessionFactory = new Configuration().configure().buildSessionFactory();
-            userManager.setUserSessionFactory(hibernateSessionFactory);
-            System.out.println("Factory created and setted");
-        } catch (Throwable e) {
-            System.out.println("Factory error");
-            e.printStackTrace();
-            throw new ExceptionInInitializerError();
-        }
+    public AuthenticationController(SessionFactory hibernateSessionFactory) {
+        userManager.setUserSessionFactory(hibernateSessionFactory);
     }
 
     //Registration function, returns a case of the enum RegistrationStatus to abstract the logic
