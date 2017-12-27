@@ -9,12 +9,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="com.sparkjava:spark-core:2.7.1" level="project" />
-    <orderEntry type="library" name="com.auth0:java-jwt:3.3.0" level="project" />
-    <orderEntry type="library" name="junit:junit:4.12" level="project" />
-    <orderEntry type="library" name="org.hibernate:hibernate-core:5.2.12.Final" level="project" />
-    <orderEntry type="library" name="com.google.code.gson:gson:2.8.2" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" name="com.sparkjava:spark-core:2.7.1" level="project" />
+    <orderEntry type="library" exported="" name="com.auth0:java-jwt:3.3.0" level="project" />
+    <orderEntry type="library" exported="" name="junit:junit:4.12" level="project" />
+    <orderEntry type="library" exported="" name="org.hibernate:hibernate-core:5.2.12.Final" level="project" />
+    <orderEntry type="library" exported="" name="com.google.code.gson:gson:2.8.2" level="project" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar!/" />

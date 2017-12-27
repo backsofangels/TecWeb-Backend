@@ -5,6 +5,8 @@
 package main.java;
 
 import static spark.Spark.*;
+
+import com.mysql.jdbc.TimeUtil;
 import main.java.controller.AuthenticationController;
 import main.java.controller.AutoMeasurement;
 import main.java.controller.ManagementController;
@@ -17,6 +19,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Routing {
 
@@ -301,7 +304,7 @@ public class Routing {
             });
         });
 
-        t.scheduleAtFixedRate(m, 0, 5000);
+        t.scheduleAtFixedRate(m, 0, TimeUnit.HOURS.toMillis(6));
     }
 
     //Utility function that decodes a base64 encoded string to a normal string
