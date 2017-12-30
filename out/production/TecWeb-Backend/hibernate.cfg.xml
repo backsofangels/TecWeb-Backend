@@ -28,7 +28,7 @@
         </property>
 
         <property name="hibernate.connection.password">
-
+            metalmaiden
         </property>
 
         <property name="show_sql">

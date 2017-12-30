@@ -78,6 +78,7 @@ public class Routing {
 
                 get("/pollutants/all", (request, response) -> {
                     response.status(StatusCodes.OK.code());
+                    response.type(ContentTypes.JSON.type());
                     return searching.getAllPollutants();
                 });
 
@@ -88,6 +89,7 @@ public class Routing {
                 });
 
                 get("/measurements/all", (request, response) -> {
+                    response.type(ContentTypes.JSON.type());
                     return searching.getAllMeasurements();
                 });
 
@@ -269,13 +271,17 @@ public class Routing {
                 //GET request
                 //Retrieves the user profile informations
                 get("/me", (request, response) -> {
-                    String token = request.cookie("jwt");
-                    Tuple <AuthorizationLevels, String> outcome = auth.grantAuthorization(token);
-                    if (outcome.getFirstTupleElement() == AuthorizationLevels.NOT_AUTHORIZED) {
-                        response.status(StatusCodes.UNAUTHORIZED.code());
+                    if (request.cookie("jwt") != null) {
+                        String token = request.cookie("jwt");
+                        Tuple <AuthorizationLevels, String> outcome = auth.grantAuthorization(token);
+                        if (outcome.getFirstTupleElement() == AuthorizationLevels.NOT_AUTHORIZED) {
+                            response.status(StatusCodes.UNAUTHORIZED.code());
+                        } else {
+                            response.status(StatusCodes.OK.code());
+                            response.cookie("188.226.186.60", "/", "jwt", outcome.getSecondTupleElement(), 3600, false, true);
+                        }
                     } else {
-                        response.status(StatusCodes.OK.code());
-                        response.cookie("127.0.0.1", "/", "jwt", outcome.getSecondTupleElement(), 3600, false, true);
+                        response.status(StatusCodes.UNAUTHORIZED.code());
                     }
                     return response;
                 });
@@ -283,22 +289,25 @@ public class Routing {
                 //PUT request
                 //Updates the user informations
                 put("/update", (request, response) -> {
-                    String requestBody = request.body();
-                    String authToken = request.cookie("jwt");
-                    boolean isTokenValid = auth.jwtValidation(authToken);
-                    if (isTokenValid) {
-                        JsonObject obj = jsonParser.parse(requestBody).getAsJsonObject();
-                        System.out.println(obj.toString());
-                        String firstName = obj.get("firstName").getAsString();
-                        String lastName = obj.get("lastName").getAsString();
-                        String email = obj.get("email").getAsString();
-                        int favDrill = obj.get("favoriteDrill").getAsInt();
-                        String newToken = auth.userUpdate(firstName, lastName, email, favDrill);
-                        response.status(StatusCodes.OK.code());
-                        response.cookie("127.0.0.1", "/", "jwt", newToken, 3600, false, true);
-                    } else {
-                        response.status(StatusCodes.UNAUTHORIZED.code());
-                    }
+
+                    if ((request.body() != null) && (request.cookie("jwt") != null)) {
+                        String requestBody = request.body();
+                        String authToken = request.cookie("jwt");
+                        boolean isTokenValid = auth.jwtValidation(authToken);
+                        if (isTokenValid) {
+                            JsonObject obj = jsonParser.parse(requestBody).getAsJsonObject();
+                            System.out.println(obj.toString());
+                            String firstName = obj.get("firstName").getAsString();
+                            String lastName = obj.get("lastName").getAsString();
+                            String email = obj.get("email").getAsString();
+                            int favDrill = obj.get("favoriteDrill").getAsInt();
+                            String newToken = auth.userUpdate(firstName, lastName, email, favDrill);
+                            response.status(StatusCodes.OK.code());
+                            response.cookie("188.226.186.60", "/", "jwt", newToken, 3600, false, true);
+                        } else {
+                            response.status(StatusCodes.UNAUTHORIZED.code());
+                        }
+                    } else { response.status(StatusCodes.UNAUTHORIZED.code()); }
                     return response;
                 });
             });
