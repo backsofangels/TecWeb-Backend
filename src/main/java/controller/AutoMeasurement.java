@@ -27,7 +27,7 @@ public class AutoMeasurement extends TimerTask {
 
     @Override
     public void run() {
-        writeMeasurements(countPollutants(), countDrills(), getPositiveDouble());
+        writeMeasurements(countPollutants(), countDrills());
     }
 
     private double getPositiveDouble() {
@@ -50,10 +50,10 @@ public class AutoMeasurement extends TimerTask {
         return drillManager.getAllDrills().toArray().length;
     }
 
-    private void writeMeasurements(int pollutantsNumber, int drillsNumber, double value) {
+    private void writeMeasurements(int pollutantsNumber, int drillsNumber) {
         for (int i = 1; i <= drillsNumber; i++) {
             for (int j = 1; j <= pollutantsNumber; j++) {
-                measurementManager.createMeasurement(new Date(), i, j, value);
+                measurementManager.createMeasurement(new Date(), i, j, getPositiveDouble());
             }
         }
     }

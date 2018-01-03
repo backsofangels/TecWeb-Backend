@@ -6,6 +6,7 @@ package main.java;
 
 import static spark.Spark.*;
 
+import com.google.gson.Gson;
 import com.mysql.jdbc.TimeUtil;
 import main.java.controller.AuthenticationController;
 import main.java.controller.AutoMeasurement;
@@ -18,6 +19,7 @@ import com.google.gson.JsonObject;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -31,6 +33,7 @@ public class Routing {
     private static JsonParser jsonParser = new JsonParser();
     private static Timer t = new Timer();
     private static AutoMeasurement m = new AutoMeasurement(hibernateSessionFactory);
+    private static Gson gson = new Gson();
 
     public static void main(String[] args) {
         //Port setting for the server, if needed another port change this one
@@ -237,7 +240,7 @@ public class Routing {
                     final String[] combination = decoded.split(":", 2);
                     Tuple<LoginStatus, String> loginOutcome = auth.loginHandler(combination[0], combination[1]);
                     if (loginOutcome.getFirstTupleElement() == LoginStatus.SUCCEDED) {
-                        response.cookie("127.0.0.1", "/", "jwt", loginOutcome.getSecondTupleElement(), 3600, false, true);
+                        response.cookie("188.226.186.60", "/", "jwt", loginOutcome.getSecondTupleElement(), 3600, false, false);
                         response.status(StatusCodes.OK.code());
                     } else if (loginOutcome.getFirstTupleElement() == LoginStatus.FAILED) {
                         response.status(StatusCodes.UNAUTHORIZED.code());
@@ -278,7 +281,7 @@ public class Routing {
                             response.status(StatusCodes.UNAUTHORIZED.code());
                         } else {
                             response.status(StatusCodes.OK.code());
-                            response.cookie("188.226.186.60", "/", "jwt", outcome.getSecondTupleElement(), 3600, false, true);
+                            response.cookie("188.226.186.60", "/", "jwt", outcome.getSecondTupleElement(), 3600, false, false);
                         }
                     } else {
                         response.status(StatusCodes.UNAUTHORIZED.code());
@@ -289,7 +292,6 @@ public class Routing {
                 //PUT request
                 //Updates the user informations
                 put("/update", (request, response) -> {
-
                     if ((request.body() != null) && (request.cookie("jwt") != null)) {
                         String requestBody = request.body();
                         String authToken = request.cookie("jwt");
@@ -301,9 +303,10 @@ public class Routing {
                             String lastName = obj.get("lastName").getAsString();
                             String email = obj.get("email").getAsString();
                             int favDrill = obj.get("favoriteDrill").getAsInt();
-                            String newToken = auth.userUpdate(firstName, lastName, email, favDrill);
+                            char[] newPass = obj.get("pwd").getAsString().toCharArray();
+                            String newToken = auth.userUpdate(firstName, lastName, email, favDrill, newPass);
                             response.status(StatusCodes.OK.code());
-                            response.cookie("188.226.186.60", "/", "jwt", newToken, 3600, false, true);
+                            response.cookie("188.226.186.60", "/", "jwt", newToken, 3600, false, false);
                         } else {
                             response.status(StatusCodes.UNAUTHORIZED.code());
                         }

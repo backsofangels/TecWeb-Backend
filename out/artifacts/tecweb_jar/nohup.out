@@ -1,20 +1,20 @@
-Dec 27, 2017 6:07:31 PM org.hibernate.Version logVersion
+Jan 03, 2018 5:17:46 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate Core {[WORKING]}
-Dec 27, 2017 6:07:31 PM org.hibernate.cfg.Environment <clinit>
+Jan 03, 2018 5:17:46 PM org.hibernate.cfg.Environment <clinit>
 INFO: HHH000206: hibernate.properties not found
-Dec 27, 2017 6:07:33 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+Jan 03, 2018 5:17:48 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
 INFO: HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
-Dec 27, 2017 6:07:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+Jan 03, 2018 5:17:51 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-Dec 27, 2017 6:07:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jan 03, 2018 5:17:51 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/pollutech?useSSL=false]
-Dec 27, 2017 6:07:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jan 03, 2018 5:17:51 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, port=3306, user=root}
-Dec 27, 2017 6:07:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jan 03, 2018 5:17:51 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-Dec 27, 2017 6:07:36 PM org.hibernate.engine.jdbc.connections.internal.PooledConnections <init>
+Jan 03, 2018 5:17:51 PM org.hibernate.engine.jdbc.connections.internal.PooledConnections <init>
 INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
-Dec 27, 2017 6:07:37 PM org.hibernate.dialect.Dialect <init>
+Jan 03, 2018 5:17:51 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by javassist.util.proxy.SecurityActions (file:/root/tecweb.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
@@ -25,7 +25,7 @@ Factory created
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-Dec 27, 2017 6:07:39 PM org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService
+Jan 03, 2018 5:17:53 PM org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService
 INFO: HHH000397: Using ASTQueryTranslatorFactory
 Hibernate: select pollutant0_.idpollutants as idpollut1_2_, pollutant0_.name as name2_2_, pollutant0_.maximum as maximum3_2_ from pollutants pollutant0_
 Hibernate: select drill0_.iddrills as iddrills1_0_, drill0_.xCoordinate as xCoordin2_0_, drill0_.yCoordinate as yCoordin3_0_ from drills drill0_
@@ -79,55 +79,11 @@ Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quan
 Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
 Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
 Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: select pollutant0_.idpollutants as idpollut1_2_, pollutant0_.name as name2_2_, pollutant0_.maximum as maximum3_2_ from pollutants pollutant0_
 Hibernate: select drill0_.iddrills as iddrills1_0_, drill0_.xCoordinate as xCoordin2_0_, drill0_.yCoordinate as yCoordin3_0_ from drills drill0_
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
-Hibernate: insert into measurements (measurementDate, iddrill, idpollutant, quantity) values (?, ?, ?, ?)
+Hibernate: select pollutant0_.idpollutants as idpollut1_2_, pollutant0_.name as name2_2_, pollutant0_.maximum as maximum3_2_ from pollutants pollutant0_
+Hibernate: select measuremen0_.idmeasurements as idmeasur1_1_, measuremen0_.measurementDate as measurem2_1_, measuremen0_.iddrill as iddrill3_1_, measuremen0_.idpollutant as idpollut4_1_, measuremen0_.quantity as quantity5_1_ from measurements measuremen0_ where measuremen0_.iddrill=? limit ?
+{"firstName":"Salvatore","lastName":"Penitente","email":"backsofangels@gmail.com","pwd":"salvini","favoriteDrill":1}
+Hibernate: select user0_.idusers as idusers1_3_, user0_.firstName as firstNam2_3_, user0_.lastName as lastName3_3_, user0_.email as email4_3_, user0_.hashedPwd as hashedPw5_3_, user0_.adminGrants as adminGra6_3_, user0_.favDrillID as favDrill7_3_ from users user0_ where user0_.email=?
+Hibernate: select user0_.idusers as idusers1_3_0_, user0_.firstName as firstNam2_3_0_, user0_.lastName as lastName3_3_0_, user0_.email as email4_3_0_, user0_.hashedPwd as hashedPw5_3_0_, user0_.adminGrants as adminGra6_3_0_, user0_.favDrillID as favDrill7_3_0_ from users user0_ where user0_.idusers=?
+Hibernate: update users set firstName=?, lastName=?, email=?, hashedPwd=?, adminGrants=?, favDrillID=? where idusers=?
+Hibernate: select user0_.idusers as idusers1_3_, user0_.firstName as firstNam2_3_, user0_.lastName as lastName3_3_, user0_.email as email4_3_, user0_.hashedPwd as hashedPw5_3_, user0_.adminGrants as adminGra6_3_, user0_.favDrillID as favDrill7_3_ from users user0_ where user0_.email=?

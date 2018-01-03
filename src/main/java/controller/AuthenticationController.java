@@ -78,11 +78,12 @@ public class AuthenticationController {
     }
 
     //Returns the updated JWT of the user, with all his new informations
-    public String userUpdate(String firstName, String lastName, String email, int favoriteDrill) {
+    public String userUpdate(String firstName, String lastName, String email, int favoriteDrill, char[] newPass) {
         User userToUpdate = userManager.retrieveUserInfosByEmail(email);
         userToUpdate.setFirstName(firstName);
         userToUpdate.setLastName(lastName);
         userToUpdate.setFavoriteDrill(favoriteDrill);
+        userToUpdate.setHashedPwd(authenticator.hash(newPass));
         userManager.updateUser(userToUpdate.getUserID(), userToUpdate);
         return generateJWT(userManager.retrieveUserInfosByEmail(email));
     }

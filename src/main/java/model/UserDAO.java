@@ -152,6 +152,7 @@ public class UserDAO {
             userToUpdate.setFirstName(updatedUser.getFirstName());
             userToUpdate.setLastName(updatedUser.getLastName());
             userToUpdate.setFavoriteDrill(updatedUser.getFavoriteDrill());
+            userToUpdate.setHashedPwd(updatedUser.getHashedPwd());
             updateSession.update(userToUpdate);
             updateTransaction.commit();
         } catch (HibernateException updateUserUpdateException) {
