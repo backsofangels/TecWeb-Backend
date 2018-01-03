@@ -303,7 +303,15 @@ public class Routing {
                             String lastName = obj.get("lastName").getAsString();
                             String email = obj.get("email").getAsString();
                             int favDrill = obj.get("favoriteDrill").getAsInt();
-                            char[] newPass = obj.get("pwd").getAsString().toCharArray();
+                            char[] newPass;
+
+                            if (obj.get("pwd") != null) {
+                                newPass = obj.get("pwd").getAsString().toCharArray();
+                                System.out.println("I got the pwd");
+                            } else {
+                                System.out.println("I didnt got the pwd");
+                                newPass = new char[1];
+                            }
                             String newToken = auth.userUpdate(firstName, lastName, email, favDrill, newPass);
                             response.status(StatusCodes.OK.code());
                             response.cookie("188.226.186.60", "/", "jwt", newToken, 3600, false, false);

@@ -83,7 +83,10 @@ public class AuthenticationController {
         userToUpdate.setFirstName(firstName);
         userToUpdate.setLastName(lastName);
         userToUpdate.setFavoriteDrill(favoriteDrill);
-        userToUpdate.setHashedPwd(authenticator.hash(newPass));
+        if (newPass.length > 1) {
+            System.out.println("Wow, something juicy!");
+            userManager.updatePassword(authenticator.hash(newPass), userToUpdate.getUserID());
+        }
         userManager.updateUser(userToUpdate.getUserID(), userToUpdate);
         return generateJWT(userManager.retrieveUserInfosByEmail(email));
     }
