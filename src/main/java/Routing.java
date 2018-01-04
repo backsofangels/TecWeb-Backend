@@ -238,6 +238,7 @@ public class Routing {
                     byte[] base64Combination = request.headers("Authorization").substring(6, request.headers("Authorization").length()).getBytes();
                     String decoded = base64Decoding(base64Combination);
                     final String[] combination = decoded.split(":", 2);
+                    System.out.println(combination[1]);
                     Tuple<LoginStatus, String> loginOutcome = auth.loginHandler(combination[0], combination[1]);
                     if (loginOutcome.getFirstTupleElement() == LoginStatus.SUCCEDED) {
                         response.cookie("188.226.186.60", "/", "jwt", loginOutcome.getSecondTupleElement(), 3600, false, false);

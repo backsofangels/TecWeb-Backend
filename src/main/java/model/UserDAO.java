@@ -102,12 +102,15 @@ public class UserDAO {
     public void updatePassword(String hashedPwd, int userID) {
         Session updateSession = userSessionFactory.openSession();
         Transaction updateTransaction = null;
-
+        System.out.println("Sto updatando la password perchè sono bello");
         try {
             updateTransaction = updateSession.beginTransaction();
             User userToUpdate = (User) updateSession.get(User.class, userID);
+            System.out.println("La password dell'utente " + userToUpdate.getEmail() + " prima dell'update è " + userToUpdate.getHashedPwd());
             userToUpdate.setHashedPwd(hashedPwd);
+            System.out.println("La password dell'utente " + userToUpdate.getEmail() + " dopo dell'update è " + userToUpdate.getHashedPwd());
             updateSession.update(userToUpdate);
+            System.out.println("O almeno ci sto provando :(((");
             updateTransaction.commit();
         } catch (HibernateException updateUserUpdateException) {
             if (updateTransaction != null) {
