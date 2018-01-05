@@ -68,13 +68,9 @@ public class Routing {
                 //GET REQUEST
                 //Retrieve a drill's measurement average given an identifier, a begin date and an end date
                 get("/drill/average", (request, response) -> {
-                    System.out.println(request.toString());
                     int drillIdentifier = Integer.parseInt(request.queryParams("identifier"));
                     String beginningDate = request.queryParams("beginDate");
                     String endingDate = request.queryParams("endDate");
-                    System.out.println(drillIdentifier);
-                    System.out.println(beginningDate);
-                    System.out.println(endingDate);
                     response.type(ContentTypes.JSON.type());
                     return searching.getMeasurementsAVG(drillIdentifier,beginningDate, endingDate);
                 });
@@ -238,7 +234,6 @@ public class Routing {
                     byte[] base64Combination = request.headers("Authorization").substring(6, request.headers("Authorization").length()).getBytes();
                     String decoded = base64Decoding(base64Combination);
                     final String[] combination = decoded.split(":", 2);
-                    System.out.println(combination[1]);
                     Tuple<LoginStatus, String> loginOutcome = auth.loginHandler(combination[0], combination[1]);
                     if (loginOutcome.getFirstTupleElement() == LoginStatus.SUCCEDED) {
                         response.cookie("188.226.186.60", "/", "jwt", loginOutcome.getSecondTupleElement(), 3600, false, false);
@@ -299,7 +294,6 @@ public class Routing {
                         boolean isTokenValid = auth.jwtValidation(authToken);
                         if (isTokenValid) {
                             JsonObject obj = jsonParser.parse(requestBody).getAsJsonObject();
-                            System.out.println(obj.toString());
                             String firstName = obj.get("firstName").getAsString();
                             String lastName = obj.get("lastName").getAsString();
                             String email = obj.get("email").getAsString();
@@ -308,9 +302,7 @@ public class Routing {
 
                             if (obj.get("pwd") != null) {
                                 newPass = obj.get("pwd").getAsString().toCharArray();
-                                System.out.println("I got the pwd");
                             } else {
-                                System.out.println("I didnt got the pwd");
                                 newPass = new char[1];
                             }
                             String newToken = auth.userUpdate(firstName, lastName, email, favDrill, newPass);

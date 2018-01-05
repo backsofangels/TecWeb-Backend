@@ -55,19 +55,4 @@ public class MeasurementAVG {
     public Date getMinorBoundary() {
         return minorBoundary;
     }
-
-    public void printMeasurementsAVGInformations() {
-        this.drillInformations.printDrill();
-        this.measurements.forEach(((integer, measurement) -> {
-            print(integer);
-            print(measurement.getFirstTupleElement());
-            print(measurement.getSecondTupleElement());
-        }));
-        print(this.maximumBoundary);
-        print(this.minorBoundary);
-    }
-
-    public static <T> void print(T t) {
-        System.out.println(t);
-    }
 }

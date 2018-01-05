@@ -61,12 +61,4 @@ public class Measurement {
     public void setQuantityMeasured(double quantityMeasured) {
         this.quantityMeasured = quantityMeasured;
     }
-
-    public void printMeasurement() {
-        System.out.println("meas id " + this.measurementID);
-        System.out.println("meas date" + this.measurementDate);
-        System.out.println("meas drill " + this.drillID);
-        System.out.println("poll id" + this.pollutantID);
-        System.out.println("quantity " + this.quantityMeasured);
-    }
 }

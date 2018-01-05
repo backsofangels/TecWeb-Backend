@@ -84,7 +84,6 @@ public class AuthenticationController {
         userToUpdate.setLastName(lastName);
         userToUpdate.setFavoriteDrill(favoriteDrill);
         if (newPass.length > 1) {
-            System.out.println("Wow, something juicy! " + newPass.toString());
             userToUpdate.setHashedPwd(authenticator.hash(newPass));
         }
         userManager.updateUser(userToUpdate.getUserID(), userToUpdate);

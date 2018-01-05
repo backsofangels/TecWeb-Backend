@@ -39,10 +39,4 @@ public class Drill {
     public double getyCoordinate() {
         return this.yCoordinate;
     }
-
-    public void printDrill() {
-        System.out.println("drillID: " + this.drillID);
-        System.out.println("drill xCoordinate:" + this.xCoordinate);
-        System.out.println("drill yCoordinate" + this.yCoordinate);
-    }
 }

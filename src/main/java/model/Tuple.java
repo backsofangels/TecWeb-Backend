@@ -8,9 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 
 public class Tuple<T, L> {
-    @SerializedName("f1")
     private T firstTupleElement;
-    @SerializedName("f2")
     private L secondTupleElement;
 
     public Tuple() {}
