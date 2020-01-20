@@ -2,7 +2,7 @@
 
 ## Hello fellow wanderer!
 I see you have come through this repository built up for an universitary project. I shall pray thou to not submit any improvement
-to this project, but you can read the code and try it by yourself on your local machine if you want. Just email me if you're doing so. Otherwise, BEGONE THOT.
+to this project, but you can read the code and try it by yourself on your local machine if you want. Just email me if you're doing so. Otherwise, BEGONE.
 
 ## Command line instruction
 
